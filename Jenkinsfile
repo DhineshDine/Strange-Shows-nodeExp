@@ -1,6 +1,6 @@
 pipeline {
   agent any 
-  stages  {
+  stages   {
    // #--Stage 1 :Build FrontEnd --
     stage ("Build Front-End")
     {
@@ -13,7 +13,7 @@ pipeline {
   }
   // # -- stage 2 :Testing Frontend --
     stage ('Test Frontend'){
-      step {
+      steps  {
         echo 'Running frontend tests...'
         sh 'cd frontend'
         sh 'npm test'
