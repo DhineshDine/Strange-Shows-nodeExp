@@ -4,7 +4,7 @@ pipeline {
    // #--Stage 1 :Build FrontEnd --
     stage ('Build Front-End')
     {
-      echo "Building Front-end React + vite "
+      echo 'Building Front-end React + vite'
       sh  'cd frontend'
       sh 'npm install'
       sh 'npm run build'
