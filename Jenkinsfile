@@ -1,7 +1,7 @@
 pipeline {
   agent any 
   stages  {
-    #--Stage 1 :Build FrontEnd --
+   // #--Stage 1 :Build FrontEnd --
     stage ("Build Front-End")
     {
       echo "Building Front-end React + vite "
@@ -11,7 +11,7 @@ pipeline {
       sh 'cd ..'
     }
   }
-  # -- stage 2 :Testing Frontend --
+  // # -- stage 2 :Testing Frontend --
     stage ('Test Frontend'){
       step {
         echo 'Running frontend tests...'
@@ -21,7 +21,7 @@ pipeline {
       }
     }
 
-  #--Stage 3: Build Backend --
+ // #--Stage 3: Build Backend --
     stage('Build BackEnd') {
       steps{
         echo 'Building the Node.js Backend...'
@@ -30,27 +30,53 @@ pipeline {
         sh 'cd ..'
       }
     }
-  #-- Stage 4: Test BackEnd --
+ // #-- Stage 4: Test BackEnd --
     stage('Test Backend') {
+      steps{
       echo 'Running backend tests...'
       sh 'cd backend'
       sh 'npm test'
       sh 'cd ..'
 
     }
-}
 
-# --Stage 5 : Deploy -- 
+    }
+// # --Stage 5 : Deploy -- 
   stage ('Deploy'){
     when {
       branch 'main'
     }
     steps {
-      echo 'Deploying To Production...'
+      echo 'Deploying To Production With Docker...'
 
-      sh 'docker build -t Strange-
+      sh 'docker build -t Strange-shows-Frontend ./frontend'
+
+      sh 'docker build -t Strange-shows-Backend ./backend'
+
+      sh 'docker push Strange-shows-Frontend'
+      sh 'docker push Strange-shows-Backend'
+
+      echo 'Deployment Completed for main branch.'
 
 
     }
   }
     }
+
+post {
+  always {
+    echo 'This will always run after the pipeline completes.'
+  }
+
+  success {
+    echo 'Pipeline finished Successfully '
+  }
+  failure {
+    echo 'Pipeline failed '
+  }
+  cleanup {
+    echo 'Cleaning up workspace..'
+  }
+}
+
+
