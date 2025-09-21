@@ -2,7 +2,7 @@ pipeline {
   agent any 
   stages   {
    // #--Stage 1 :Build FrontEnd --
-    stage ("Build Front-End")
+    stage ('Build Front-End')
     {
       echo "Building Front-end React + vite "
       sh  'cd frontend'
