@@ -14,7 +14,7 @@ const Profile = () => {
   const fetchUserProfile = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('/api/photo', {
+      const response = await axios.get('/api/photo~', {
         headers: { Authorization: `Bearer ${token}` },
       });
 
