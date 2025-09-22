@@ -1,10 +1,16 @@
 import { render, screen } from '@testing-library/react';
 import { describe, test, expect } from 'vitest';
-import App from './src/App.jsx';
+import { MemoryRouter } from 'react-router-dom';
+import App from './src/App.jsx';  // adjust import path if needed
 
 describe('App component', () => {
   test('renders learn react text', () => {
-    render(<App />);
-    expect(screen.getByText(/learn react/i)).toBeDefined();
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
+    const linkElement = screen.getByText(/learn react/i);
+    expect(linkElement).toBeInTheDocument();
   });
 });
