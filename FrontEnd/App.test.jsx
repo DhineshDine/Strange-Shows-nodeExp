@@ -1,16 +1,13 @@
-import { render, screen } from '@testing-library/react';
-import { describe, test, expect } from 'vitest';
-import { MemoryRouter } from 'react-router-dom';
-import App from './src/App.jsx';  // adjust import path if needed
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import { MemoryRouter } from "react-router-dom";
 
-describe('App component', () => {
-  test('renders learn react text', () => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
-    );
-    const linkElement = screen.getByText(/learn react/i);
-    expect(linkElement).toBeInTheDocument();
-  });
+test("App component renders Login heading", () => {
+  render(
+    <MemoryRouter>
+      <App />
+    </MemoryRouter>
+  );
+  const headingElement = screen.getByText(/Login/i);
+  expect(headingElement).toBeInTheDocument();
 });
