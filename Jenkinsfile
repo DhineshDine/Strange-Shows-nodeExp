@@ -15,18 +15,9 @@ stages {
         }
     }
 
-//    # --- Stage 2: Test Frontend ---
-//    # This stage runs automated tests for the React frontend.
-    stage('Test Frontend') {
-        steps {
-            echo 'Running frontend tests...'
-            dir('frontend') {
-                bat 'npm test'
-            }
-        }
-    }
 
-//    # --- Stage 3: Build Backend ---
+
+//    # --- Stage 2: Build Backend ---
 //    # This stage handles the Node.js backend. For most Node.js apps,
  //   # 'build' primarily means installing dependencies.
     stage('Build Backend') {
@@ -37,7 +28,18 @@ stages {
             }
         }
     }
-
+    
+//    # --- Stage 3: Test Frontend ---
+//    # This stage runs automated tests for the React frontend.
+    stage('Test Frontend') {
+        steps {
+            echo 'Running frontend tests...'
+            dir('frontend') {
+                bat 'npm test'
+            }
+        }
+    }
+    
  //   # --- Stage 4: Test Backend ---
 //    # This stage runs automated tests for the Node.js backend.
     stage('Test Backend') {
