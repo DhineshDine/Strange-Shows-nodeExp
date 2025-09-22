@@ -1,4 +1,6 @@
 // # The 'stages' block contains a sequence of logical stages for the pipeline.
+pipeline{
+    agent any 
 stages {
 //    # --- Stage 1: Build Frontend ---
 //    # This stage navigates into the frontend directory, installs dependencies,
@@ -82,4 +84,5 @@ post {
     cleanup {
         echo 'Cleaning up workspace..'
     }
+}
 }
