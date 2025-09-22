@@ -23,7 +23,7 @@ stages {
     stage('Build Backend') {
         steps {
             echo 'Building the Node.js Backend...'
-            dir('backend') {
+            dir('express-backend') {
                 bat 'npm install'
             }
         }
