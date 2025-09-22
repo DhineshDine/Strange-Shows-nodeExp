@@ -7,8 +7,8 @@ stages {
         steps {
             echo 'Building Front-end React + Vite'
             dir('frontend') {
-                sh 'npm install'
-                sh 'npm run build'
+                bat 'npm install'
+                bat 'npm run build'
             }
         }
     }
@@ -19,7 +19,7 @@ stages {
         steps {
             echo 'Running frontend tests...'
             dir('frontend') {
-                sh 'npm test'
+                bat 'npm test'
             }
         }
     }
@@ -31,7 +31,7 @@ stages {
         steps {
             echo 'Building the Node.js Backend...'
             dir('backend') {
-                sh 'npm install'
+                bat 'npm install'
             }
         }
     }
@@ -42,7 +42,7 @@ stages {
         steps {
             echo 'Running backend tests...'
             dir('backend') {
-                sh 'npm test'
+                bat 'npm test'
             }
         }
     }
@@ -57,11 +57,11 @@ stages {
         steps {
             echo 'Deploying to Production With Docker...'
 
-            sh 'docker build -t Strange-shows-Frontend ./frontend'
-            sh 'docker build -t Strange-shows-Backend ./backend'
+            bat 'docker build -t Strange-shows-Frontend ./frontend'
+            bat 'docker build -t Strange-shows-Backend ./backend'
 
-            sh 'docker push Strange-shows-Frontend'
-            sh 'docker push Strange-shows-Backend'
+            bat 'docker push Strange-shows-Frontend'
+            bat 'docker push Strange-shows-Backend'
 
             echo 'Deployment Completed for main branch.'
         }
