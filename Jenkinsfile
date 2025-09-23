@@ -58,13 +58,18 @@ stages {
       
         steps {
             echo 'Deploying to Production With Docker...'
-
-            bat 'docker build -t strange-shows-nodeexp-frontend ./frontend'
-            bat 'docker build -t strange-shows-nodeexp-express-backend ./backend'
-
-            bat 'docker push strange-shows-nodeexp-frontend'
-            bat 'docker push strange-shows-nodeexp-express-backend'
-
+          
+            withDockerRegistry(credentialsId: 'docker') {
+            
+            dir ('FrontEnd'){
+                bat 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
+                bat 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
+            }
+                dir ('express-backend'){
+                bat 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
+                bat 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
+            }
+}
             echo 'Deployment Completed for main branch.'
         }
     }
