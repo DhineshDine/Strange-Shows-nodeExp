@@ -9,6 +9,6 @@ test("App component renders Login heading", () => {
       <App />
     </MemoryRouter>
   );
-  const headingElement = screen.getByText(/Login/i);
+  const headingElement = screen.getByRole('heading' , { name: /login/i} ) ;
   expect(headingElement).toBeInTheDocument();
 });
