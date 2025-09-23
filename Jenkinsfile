@@ -45,7 +45,7 @@ stages {
     stage('Test Backend') {
         steps {
             echo 'Running backend tests...'
-            dir('backend') {
+            dir('express-backend') {
                 bat 'npm test'
             }
         }
