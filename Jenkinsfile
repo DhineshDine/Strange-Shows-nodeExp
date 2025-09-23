@@ -59,11 +59,11 @@ stages {
         steps {
             echo 'Deploying to Production With Docker...'
 
-            bat 'docker build -t Strange-Shows-nodeExp-FrontEnd ./frontend'
-            bat 'docker build -t Strange-Shows-nodeExp-express-backend ./backend'
+            bat 'docker build -t strange-shows-nodeexp-frontend ./frontend'
+            bat 'docker build -t strange-shows-nodeexp-express-backend ./backend'
 
-            bat 'docker push Strange-shows-Frontend'
-            bat 'docker push Strange-shows-Backend'
+            bat 'docker push strange-shows-nodeexp-frontend'
+            bat 'docker push strange-shows-nodeexp-express-backend'
 
             echo 'Deployment Completed for main branch.'
         }
