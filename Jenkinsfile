@@ -55,9 +55,7 @@ stages {
 //    # This stage deploys the application. This example is conditional,
 //    # only running for the 'main' branch to prevent accidental deployments.
     stage('Deploy') {
-        when {
-            branch 'main'
-        }
+      
         steps {
             echo 'Deploying to Production With Docker...'
 
