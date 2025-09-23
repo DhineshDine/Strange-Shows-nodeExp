@@ -59,7 +59,7 @@ stages {
         steps {
             echo 'Deploying to Production With Docker...'
           
-            withDockerRegistry(credentialsId: 'docker') {
+withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com/repositories/dhineshdine') {
             
             dir ('FrontEnd'){
                 bat 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
