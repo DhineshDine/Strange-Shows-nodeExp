@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import App from "./src/App.jsx";
 import { MemoryRouter } from "react-router-dom";
 
 test("App component renders Login heading", () => {
