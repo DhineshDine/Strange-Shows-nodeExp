@@ -1,7 +1,7 @@
 FROM node:20-apline
 WORKDIR /app
-COPY Package*.json ./
+COPY package*.json ./
 RUN npm install
 COPY . .
 Expose 3000
-CMD ["node", "server.js"]
+CMD ["node", "server.js"] 
