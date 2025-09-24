@@ -57,10 +57,9 @@ stages {
     stage('Deploy') {
       
         steps {
-            echo 'Deploying to Production With Docker...'
           
-withDockerRegistry(credentialsId: 'docker', url: 'https://hub.docker.com/repositories/dhineshdine') {
-            
+withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
+           
             dir ('FrontEnd'){
                 bat 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
                 bat 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
