@@ -8,7 +8,9 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+      "postinstall": "esbuild --build-cache=none"  
+
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
@@ -40,6 +42,8 @@
     "recharts": "^2.15.1"
   },
   "devDependencies": {
+    "esbuild": "^0.21.5",
+
     "@eslint/js": "^9.21.0",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
