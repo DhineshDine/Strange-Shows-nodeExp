@@ -55,18 +55,20 @@ stages {
 //    # This stage deploys the application. This example is conditional,
 //    # only running for the 'main' branch to prevent accidental deployments.
     stage('Deploy') {
-        when {
-            branch 'main'
-        }
+      
         steps {
-            echo 'Deploying to Production With Docker...'
-
-            bat 'docker build -t Strange-shows-Frontend ./frontend'
-            bat 'docker build -t Strange-shows-Backend ./backend'
-
-            bat 'docker push Strange-shows-Frontend'
-            bat 'docker push Strange-shows-Backend'
-
+          
+withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
+           
+            dir ('FrontEnd'){
+                bat 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
+                bat 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
+            }
+                dir ('express-backend'){
+                bat 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
+                bat 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
+            }
+}
             echo 'Deployment Completed for main branch.'
         }
     }
