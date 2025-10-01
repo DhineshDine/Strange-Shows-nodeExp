@@ -9,7 +9,7 @@ tools {
         // !!! IMPORTANT: Replace 'NodeJS-20' with the exact name 
         // you gave your Node.js installation in: 
         // Manage Jenkins -> Global Tool Configuration.
-        nodejs 'NodeJS-22.5.0'
+        nodejs 'NodeJS-Latest'
     }
     
 stages {
