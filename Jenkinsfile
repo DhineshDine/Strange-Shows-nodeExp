@@ -6,7 +6,7 @@ pipeline{
     tools {
         // !!! IMPORTANT: The string below MUST match the 'Name' you gave your 
         // Node.js installation in: Manage Jenkins -> Global Tool Configuration.
-        nodejs 'NodeJS-Latest'
+        nodejs 'NodeJS-24.9.0'
     }
 stages {
 //     # --- Stage 1: Build Frontend ---
