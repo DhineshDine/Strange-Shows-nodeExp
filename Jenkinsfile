@@ -1,6 +1,10 @@
 // # The 'stages' block contains a sequence of logical stages for the pipeline.
 pipeline{
     agent any 
+    tools {
+  nodejs 'nodejs-23.9.0'
+}
+
 stages {
 //    # --- Stage 1: Build Frontend ---
 //    # This stage navigates into the frontend directory, installs dependencies,
