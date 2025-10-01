@@ -16,7 +16,6 @@ stages {
             dir('frontend') {
                 sh 'npm install'
                 // Re-enabled: Assumes "build": "vite build" is now committed to frontend/package.json
-                sh 'npm run build' 
             }
         }
     }
