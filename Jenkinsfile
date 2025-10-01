@@ -1,6 +1,10 @@
 // # The 'stages' block contains a sequence of logical stages for the pipeline.
 pipeline{
     agent any 
+    tools {
+  nodejs 'NodeJS_Home'
+}
+
 stages {
 //    # --- Stage 1: Build Frontend ---
 //    # This stage navigates into the frontend directory, installs dependencies,
@@ -9,8 +13,7 @@ stages {
         steps {
             echo 'Building Front-end React + Vite'
             dir('frontend') {
-                bat 'npm install'
-                bat 'npm run build'
+                sh 'npm install'
             }
         }
     }
@@ -24,7 +27,7 @@ stages {
         steps {
             echo 'Building the Node.js Backend...'
             dir('express-backend') {
-                bat 'npm install'
+                sh 'npm install'
             }
         }
     }
@@ -35,7 +38,7 @@ stages {
         steps {
             echo 'Running frontend tests...'
             dir('frontend') {
-                bat 'npm test'
+                sh 'npm test'
             }
         }
     }
@@ -46,7 +49,7 @@ stages {
         steps {
             echo 'Running backend tests...'
             dir('express-backend') {
-                bat 'npm test'
+                sh 'npm test'
             }
         }
     }
@@ -61,12 +64,12 @@ stages {
 withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
            
             dir ('FrontEnd'){
-                bat 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
-                bat 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
+                sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
+                sh 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
             }
                 dir ('express-backend'){
-                bat 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
-                bat 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
+                sh 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
+                sh 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
             }
 }
             echo 'Deployment Completed for main branch.'
