@@ -14,7 +14,6 @@ stages {
             echo 'Building Front-end React + Vite'
             dir('frontend') {
                 sh 'npm install'
-                sh 'npm run build'
             }
         }
     }
