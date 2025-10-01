@@ -92,4 +92,4 @@ post {
         echo 'Cleaning up workspace..'
     }
 }
-}
+} 
