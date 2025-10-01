@@ -1,17 +1,13 @@
 // This Jenkinsfile defines a Continuous Integration/Continuous Deployment (CI/CD) pipeline for a full-stack Node.js application.
 pipeline{
     agent any
-    // NOTE: The 'tools' block was removed because Jenkins reported "Invalid tool type 'nodejs'".
-    // To use 'tools { nodejs ... }', you must install the 'NodeJS Plugin' via Manage Jenkins -> Plugins.
-    // If you cannot install the plugin, you may need to use 'withEnv' or hardcode the 'npm' path 
-    // to resolve the original 'npm: not found' error.
-tools {
-        // !!! IMPORTANT: Replace 'NodeJS-20' with the exact name 
-        // you gave your Node.js installation in: 
-        // Manage Jenkins -> Global Tool Configuration.
+    // The 'tools' block ensures the Node.js binaries (including npm) are automatically 
+    // added to the execution PATH for all subsequent steps, resolving the "npm: not found" error.
+    tools {
+        // !!! IMPORTANT: The string below MUST match the 'Name' you gave your 
+        // Node.js installation in: Manage Jenkins -> Global Tool Configuration.
         nodejs 'NodeJS-Latest'
     }
-    
 stages {
 //     # --- Stage 1: Build Frontend ---
 //     # This stage navigates into the frontend directory, installs dependencies,
