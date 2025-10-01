@@ -5,6 +5,13 @@ pipeline{
     // To use 'tools { nodejs ... }', you must install the 'NodeJS Plugin' via Manage Jenkins -> Plugins.
     // If you cannot install the plugin, you may need to use 'withEnv' or hardcode the 'npm' path 
     // to resolve the original 'npm: not found' error.
+tools {
+        // !!! IMPORTANT: Replace 'NodeJS-20' with the exact name 
+        // you gave your Node.js installation in: 
+        // Manage Jenkins -> Global Tool Configuration.
+        nodejs 'NodeJS-22.5.0'
+    }
+    
 stages {
 //     # --- Stage 1: Build Frontend ---
 //     # This stage navigates into the frontend directory, installs dependencies,
