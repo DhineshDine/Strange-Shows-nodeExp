@@ -1,28 +1,27 @@
-// # The 'stages' block contains a sequence of logical stages for the pipeline.
+// This Jenkinsfile defines a Continuous Integration/Continuous Deployment (CI/CD) pipeline for a full-stack Node.js application.
 pipeline{
-    agent any 
+    agent any
+    // The 'tools' block ensures the Node.js binaries (including npm) are automatically 
+    // added to the execution PATH for all subsequent steps, resolving the "npm: not found" error.
     tools {
-  nodejs 'NodeJS_Home'
-}
-
+        // !!! IMPORTANT: The string below MUST match the 'Name' you gave your 
+        // Node.js installation in: Manage Jenkins -> Global Tool Configuration.
+        nodejs 'NodeJS_Home'
+    }
 stages {
-//    # --- Stage 1: Build Frontend ---
-//    # This stage navigates into the frontend directory, installs dependencies,
-//    # and builds the production-ready React application.
+//     # --- Stage 1: Build Frontend ---
     stage('Build Front-End') {
         steps {
             echo 'Building Front-end React + Vite'
             dir('frontend') {
                 sh 'npm install'
+                // Re-enabled: Assumes "build": "vite build" is now committed to frontend/package.json
             }
         }
     }
 
 
-
-//    # --- Stage 2: Build Backend ---
-//    # This stage handles the Node.js backend. For most Node.js apps,
- //   # 'build' primarily means installing dependencies.
+//     # --- Stage 2: Build Backend ---
     stage('Build Backend') {
         steps {
             echo 'Building the Node.js Backend...'
@@ -32,45 +31,43 @@ stages {
         }
     }
     
-//    # --- Stage 3: Test Frontend ---
-//    # This stage runs automated tests for the React frontend.
+//     # --- Stage 3: Test Frontend ---
     stage('Test Frontend') {
         steps {
-            echo 'Running frontend tests...'
+            echo 'Running frontend tests (vitest)...'
             dir('frontend') {
-                sh 'npm test'
+                // DEBUGGING STEP ADDED: THIS MUST SHOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
+                sh 'npm test' // Runs "vitest"
             }
         }
     }
     
- //   # --- Stage 4: Test Backend ---
-//    # This stage runs automated tests for the Node.js backend.
+//     # --- Stage 4: Test Backend ---
     stage('Test Backend') {
         steps {
-            echo 'Running backend tests...'
+            echo 'Running backend tests (jest)...'
             dir('express-backend') {
-                sh 'npm test'
+                // DEBUGGING STEP ADDED: THIS MUST SHOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
+                sh 'npm test' // Runs "npx jest"
             }
         }
     }
 
- //   # --- Stage 5: Deploy ---
-//    # This stage deploys the application. This example is conditional,
-//    # only running for the 'main' branch to prevent accidental deployments.
+//     # --- Stage 5: Deploy ---
     stage('Deploy') {
-      
+        
         steps {
-          
+            
 withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
-           
-            dir ('FrontEnd'){
-                sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
-                sh 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
-            }
+            
+                dir ('frontend'){
+                    sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
+                    sh 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
+                }
                 dir ('express-backend'){
-                sh 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
-                sh 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
-            }
+                    sh 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
+                    sh 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
+                }
 }
             echo 'Deployment Completed for main branch.'
         }
