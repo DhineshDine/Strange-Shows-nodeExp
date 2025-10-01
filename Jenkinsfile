@@ -37,7 +37,6 @@ stages {
             echo 'Running frontend tests (vitest)...'
             dir('frontend') {
                 // DEBUGGING STEP ADDED: THIS MUST SHOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
-                sh 'cat package.json' 
                 sh 'npm test' // Runs "vitest"
             }
         }
@@ -49,7 +48,6 @@ stages {
             echo 'Running backend tests (jest)...'
             dir('express-backend') {
                 // DEBUGGING STEP ADDED: THIS MUST SHOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
-                sh 'cat package.json'
                 sh 'npm test' // Runs "npx jest"
             }
         }
