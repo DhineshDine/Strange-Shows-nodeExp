@@ -28,7 +28,6 @@ stages {
             echo 'Building the Node.js Backend...'
             dir('express-backend') {
                 sh 'npm install'
-                sh 'npm run build'
             }
         }
     }
