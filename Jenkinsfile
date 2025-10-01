@@ -1,13 +1,17 @@
-// # The 'stages' block contains a sequence of logical stages for the pipeline.
+// The 'tools' directive ensures the specified tool (Node.js) is installed
+// on the agent and its bin directory is added to the PATH for all subsequent steps.
 pipeline{
-    agent any 
+    agent any
     tools {
+        // !!! IMPORTANT: You MUST replace 'NodeJS-Latest' with the exact name 
+        // you gave your Node.js installation in: 
+        // Manage Jenkins -> Global Tool Configuration.
         nodejs 'NodeJS-Latest'
     }
 stages {
-//    # --- Stage 1: Build Frontend ---
-//    # This stage navigates into the frontend directory, installs dependencies,
-//    # and builds the production-ready React application.
+//     # --- Stage 1: Build Frontend ---
+//     # This stage navigates into the frontend directory, installs dependencies,
+//     # and builds the production-ready React application.
     stage('Build Front-End') {
         steps {
             echo 'Building Front-end React + Vite'
@@ -19,10 +23,9 @@ stages {
     }
 
 
-
-//    # --- Stage 2: Build Backend ---
-//    # This stage handles the Node.js backend. For most Node.js apps,
- //   # 'build' primarily means installing dependencies.
+//     # --- Stage 2: Build Backend ---
+//     # This stage handles the Node.js backend. For most Node.js apps,
+//     # 'build' primarily means installing dependencies.
     stage('Build Backend') {
         steps {
             echo 'Building the Node.js Backend...'
@@ -32,8 +35,8 @@ stages {
         }
     }
     
-//    # --- Stage 3: Test Frontend ---
-//    # This stage runs automated tests for the React frontend.
+//     # --- Stage 3: Test Frontend ---
+//     # This stage runs automated tests for the React frontend.
     stage('Test Frontend') {
         steps {
             echo 'Running frontend tests...'
@@ -43,8 +46,8 @@ stages {
         }
     }
     
- //   # --- Stage 4: Test Backend ---
-//    # This stage runs automated tests for the Node.js backend.
+//     # --- Stage 4: Test Backend ---
+//     # This stage runs automated tests for the Node.js backend.
     stage('Test Backend') {
         steps {
             echo 'Running backend tests...'
@@ -54,23 +57,24 @@ stages {
         }
     }
 
- //   # --- Stage 5: Deploy ---
-//    # This stage deploys the application. This example is conditional,
-//    # only running for the 'main' branch to prevent accidental deployments.
+//     # --- Stage 5: Deploy ---
+//     # This stage deploys the application. This example is conditional,
+//     # only running for the 'main' branch to prevent accidental deployments.
     stage('Deploy') {
-      
+        
         steps {
-          
+            
 withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
-           
-            dir ('FrontEnd'){
-                sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
-                sh 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
-            }
+            
+                // Changed 'FrontEnd' to 'frontend' for consistency
+                dir ('frontend'){
+                    sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
+                    sh 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
+                }
                 dir ('express-backend'){
-                sh 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
-                sh 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
-            }
+                    sh 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
+                    sh 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
+                }
 }
             echo 'Deployment Completed for main branch.'
         }
