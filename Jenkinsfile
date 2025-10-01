@@ -2,7 +2,7 @@
 pipeline{
     agent any 
     tools {
-  nodejs 'nodejs-23.9.0'
+  nodejs 'NodeJS_Home'
 }
 
 stages {
