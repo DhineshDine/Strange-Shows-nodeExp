@@ -1,13 +1,10 @@
-// The 'tools' directive ensures the specified tool (Node.js) is installed
-// on the agent and its bin directory is added to the PATH for all subsequent steps.
+// This Jenkinsfile defines a Continuous Integration/Continuous Deployment (CI/CD) pipeline for a full-stack Node.js application.
 pipeline{
     agent any
-    tools {
-        // !!! IMPORTANT: You MUST replace 'NodeJS-Latest' with the exact name 
-        // you gave your Node.js installation in: 
-        // Manage Jenkins -> Global Tool Configuration.
-        nodejs 'NodeJS-Latest'
-    }
+    // NOTE: The 'tools' block was removed because Jenkins reported "Invalid tool type 'nodejs'".
+    // To use 'tools { nodejs ... }', you must install the 'NodeJS Plugin' via Manage Jenkins -> Plugins.
+    // If you cannot install the plugin, you may need to use 'withEnv' or hardcode the 'npm' path 
+    // to resolve the original 'npm: not found' error.
 stages {
 //     # --- Stage 1: Build Frontend ---
 //     # This stage navigates into the frontend directory, installs dependencies,
