@@ -37,6 +37,7 @@ stages {
             echo 'Running frontend tests (vitest)...'
             dir('FrontEnd') {
                 // DEBUGGING STEP ADDED: THIS MUST SHOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
+                sh 'npm run'
                 sh 'npm test' // Runs "vitest"
             }
         }
