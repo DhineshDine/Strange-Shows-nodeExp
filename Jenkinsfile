@@ -65,7 +65,7 @@ withCredentials([string(credentialsId: 'docker_pwd', variable: 'docker_pwd')]) {
     sh "docker login -u dhineshdine -p ${docker_pwd}"
 
     
-                dir ('frontend'){
+                dir ('FrontEnd'){
                     sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
                     sh 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
                 }
