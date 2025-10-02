@@ -60,9 +60,9 @@ stages {
         
         steps {
             
-withCredentials([string(credentialsId: 'docker-pwd', variable: 'Docker-jenkins')]) {
+withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
 
-    sh 'docker login -u dhineshdine -p${Docker-jenkins}'
+    sh 'docker login -u dhineshdine -p${docker-pwd}'
 
     
                 dir ('frontend'){
