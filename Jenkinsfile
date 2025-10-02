@@ -62,7 +62,7 @@ stages {
             
 withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
 
-    sh 'docker login -u dhineshdine -p${docker-pwd}'
+    sh 'docker login -u dhineshdine -p ${docker-pwd}'
 
     
                 dir ('frontend'){
