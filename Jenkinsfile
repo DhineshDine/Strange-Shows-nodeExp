@@ -37,7 +37,8 @@ stages {
             echo 'Running frontend tests (vitest)...'
             dir('FrontEnd') {
                 // DEBUGGING STEP ADDED: THIS MUST SHOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
-                sh 'npm run'
+                sh 'rm -rf node_modules'
+                sh 'npm install --include=dev'
                 sh 'npm test' // Runs "vitest"
             }
         }
