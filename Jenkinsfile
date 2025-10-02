@@ -60,7 +60,10 @@ stages {
         
         steps {
             
-withCredentials([string(credentialsId: 'docker-pwd', variable: 'docker-pwd')]) {
+withCredentials([string(credentialsId: 'docker-pwd', variable: 'Docker-jenkins')]) {
+
+    sh 'docker login -u dhineshdine -p${Docker-jenkins}'
+
             
                 dir ('frontend'){
                     sh 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
