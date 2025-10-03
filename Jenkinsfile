@@ -1,4 +1,4 @@
- // This Jenkinsfile defines a Continuous Integration/Continuous Deployment (CI/CD) pipeline for a full-stack Node.js application.
+// This Jenkinsfile defines a Continuous Integration/Continuous Deployment (CI/CD) pipeline for a full-stack Node.js application.
 pipeline{
     agent any
     // The 'tools' block ensures the Node.js binaries (including npm) are automatically 
