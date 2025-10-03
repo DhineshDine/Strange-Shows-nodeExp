@@ -3,7 +3,7 @@ pipeline{
     agent any
     // The 'tools' block ensures the Node.js binaries (including npm) are automatically 
     // added to the execution PATH for all subsequent steps, resolving the "npm: not found" error.
-      {
+     tools {
         // !!! IMPORTANT: The string below MUST match the 'Name' you gave your 
         // Node.js installation in: Manage Jenkins -> Global Tool Configuration.
         nodejs 'NodeJS_Home'
