@@ -1,0 +1,72 @@
+trigger:
+  branches:
+    include:
+      - main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+stages:
+# FRONTEND STAGE
+- stage: Frontend
+  displayName: Deploy Frontend (React + Vite)
+  jobs:
+    - job: BuildAndDeployFrontend
+      steps:
+      - task: UseNode@1
+        inputs:
+          version: '22.x'
+
+      # Install dependencies
+      - script: npm install
+        displayName: 'Install dependencies'
+        workingDirectory: Frontend
+
+      # Build the React + Vite app
+      - script: npm run build
+        displayName: 'Build React + Vite App'
+        workingDirectory: Frontend
+
+      # Verify dist folder exists (debugging step)
+      - script: |
+          ls -la
+          ls -la dist
+        displayName: 'Check dist folder'
+        workingDirectory: Frontend
+
+      # Deploy dist folder to Azure Web App
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: 'new'
+          appName: 'Strange-Shows-Frontend'
+          package: 'Frontend/dist'
+
+
+# BACKEND STAGE
+- stage: Backend
+  displayName: Deploy Backend (Express)
+  jobs:
+    - job: BuildAndDeployBackend
+      steps:
+      - task: UseNode@1
+        inputs:
+          version: '22.x'
+
+      - script: npm install
+        displayName: 'Install dependencies'
+        workingDirectory: Backend
+
+      # Zip the backend
+      - task: ArchiveFiles@2
+        inputs:
+          rootFolderOrFile: 'Backend'
+          includeRootFolder: false
+          archiveType: 'zip'
+          archiveFile: '$(Build.ArtifactStagingDirectory)/backend.zip'
+          replaceExistingArchive: true
+
+      - task: AzureWebApp@1
+        inputs:
+          azureSubscription: 'new'
+          appName: 'Strange-Shows-BackEnd'
+          package: '$(Build.ArtifactStagingDirectory)/backend.zip'
