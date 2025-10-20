@@ -13,7 +13,7 @@ stages {
     stage('Build Front-End') {
         steps {
             echo 'Building Front-end React + Vite'
-            dir('frontend') {
+            dir('FrontEnd') {
                 sh 'npm install'
                 // Re-enabled: Assumes "build": "vite build" is now committed to frontend/package.json
             }
