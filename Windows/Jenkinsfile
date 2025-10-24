@@ -37,8 +37,9 @@ stages {
             echo 'Running frontend tests (vitest)...'
             dir('FrontEnd') {
                 // DEBUGGING STEP ADDED: THIS MUST batOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
-                bat 'rm -rf node_modules'
-                bat 'npm install --include=dev'
+                bat 'npm install rimraf -g'
+                  bat 'rimraf node_modules'
+
                 bat 'npm test' // Runs "vitest"
             }
         }
