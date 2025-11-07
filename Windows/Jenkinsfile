@@ -39,6 +39,8 @@ stages {
                 // DEBUGGING STEP ADDED: THIS MUST batOW UP IN CONSOLE OUTPUT IF THE FILE IS CORRECTLY COMMITTED
                 bat 'npm install rimraf -g'
                   bat 'rimraf node_modules'
+                bat 'npm install -D jsdom'
+                bat 'npm install --save-dev @testing-library/react'
 
                 bat 'npm test' // Runs "vitest"
             }
