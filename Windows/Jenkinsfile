@@ -63,9 +63,9 @@ stages {
         
         steps {
             
-withCredentials([string(credentialsId: 'docker_pwd', variable: 'docker_pwd')]) {
+withCredentials([string(credentialsId: 'docker-pwd', variable: 'Dine')]) {
 
-    bat "docker login -u dhinebatdine -p ${docker_pwd}"
+    bat "docker login -u dhineshdine -p ${Dine}"
 
     
                 dir ('FrontEnd'){
