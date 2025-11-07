@@ -69,7 +69,7 @@ withCredentials([string(credentialsId: 'docker-pwd', variable: 'Dine')]) {
 
             dir('Strange-Shows-nodeExp/Windows') {
 
-            bat 'cd .. && docker-compose -f docker-compose.yaml up -d --build'
+            bat 'docker-compose -f docker-compose.yaml up -d --build'
 }
 }
         }
