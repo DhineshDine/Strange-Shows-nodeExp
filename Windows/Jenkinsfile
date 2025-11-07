@@ -67,7 +67,7 @@ withCredentials([string(credentialsId: 'docker-pwd', variable: 'Dine')]) {
 
     bat "docker login -u dhineshdine -p ${Dine}"
 
-            dir('Strange-Shows-nodeExp/windows') {
+            dir('Strange-Shows-nodeExp/Windows') {
 
             bat 'cd .. && docker-compose -f docker-compose.yaml up -d --build'
 }
