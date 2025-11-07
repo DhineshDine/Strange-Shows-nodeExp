@@ -69,12 +69,12 @@ withCredentials([string(credentialsId: 'docker-pwd', variable: 'Dine')]) {
 
     
                 dir ('FrontEnd'){
-                    bat 'docker build -t dhinebatdine/strange-batows-nodeexp-frontend:latest .'
-                    bat 'docker pubat dhinebatdine/strange-batows-nodeexp-frontend:latest'
+                    bat 'docker build -t dhinebatdine/strange-shows-nodeexp-frontend:latest .'
+                    bat 'docker push dhinebatdine/strange-shows-nodeexp-frontend:latest'
                 }
                 dir ('express-backend'){
-                    bat 'docker build -t dhinebatdine/strange-batows-nodeexp-express-backend:latest .'
-                    bat 'docker pubat dhinebatdine/strange-batows-nodeexp-express-backend:latest'
+                    bat 'docker build -t dhinebatdine/strange-shows-nodeexp-express-backend:latest .'
+                    bat 'docker push dhinebatdine/strange-shows-nodeexp-express-backend:latest'
                 }
 }
             echo 'Deployment Completed for main branch.'
@@ -88,7 +88,7 @@ post {
         echo 'This will always run after the pipeline completes.'
     }
     success {
-        echo 'Pipeline finibated Successfully'
+        echo 'Pipeline finishted Successfully'
     }
     failure {
         echo 'Pipeline failed'
