@@ -69,12 +69,12 @@ withCredentials([string(credentialsId: 'docker-pwd', variable: 'Dine')]) {
 
     
                 dir ('FrontEnd'){
-                    bat 'docker build -t dhinebatdine/strange-shows-nodeexp-frontend:latest .'
-                    bat 'docker push dhinebatdine/strange-shows-nodeexp-frontend:latest'
+                    bat 'docker build -t dhineshdine/strange-shows-nodeexp-frontend:latest .'
+                    bat 'docker push dhineshdine/strange-shows-nodeexp-frontend:latest'
                 }
                 dir ('express-backend'){
-                    bat 'docker build -t dhinebatdine/strange-shows-nodeexp-express-backend:latest .'
-                    bat 'docker push dhinebatdine/strange-shows-nodeexp-express-backend:latest'
+                    bat 'docker build -t dhineshdine/strange-shows-nodeexp-express-backend:latest .'
+                    bat 'docker push dhineshdine/strange-shows-nodeexp-express-backend:latest'
                 }
 }
             echo 'Deployment Completed for main branch.'
