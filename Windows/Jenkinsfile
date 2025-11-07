@@ -68,7 +68,7 @@ withCredentials([string(credentialsId: 'docker-pwd', variable: 'Dine')]) {
     bat "docker login -u dhineshdine -p ${Dine}"
 
     
-            bat 'docker-compose -f docker.compose.yaml up -d --build'
+            bat 'cd .. && docker-compose -f docker.compose.yaml up -d --build'
 }
             echo 'Deployment Completed for main branch.'
         }
