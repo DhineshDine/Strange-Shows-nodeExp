@@ -3,6 +3,6 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 COPY . .
-Expose 3000
+Expose 5000
 CMD ["node", "server.js"] 
 CMD ["node", "server.js"]
