@@ -8,7 +8,7 @@ version: '3.8'
           context: ./FrontEnd
           dockerfile: Dockerfile
         ports:
-         -"5173:5173"
+         - "5173:5173"
          depends_on:
          - backend
         environment: 
@@ -19,14 +19,14 @@ version: '3.8'
           context: ./express-backend
           dockerfile: Dockerfile
         ports:
-         -"5000:5000"
+         - "5000:5000"
         depends_on:
         - mongodb
-      environmet:
+      environment:
        - MONGO_URI=mongodb://mongodb:27017/mydb
-       -CLIENT_URL=http://localhost:5173
+       - CLIENT_URL=http://localhost:5173
        depends_on:
-       -mongodb
+       - mongodb
        volumes:
        - ./backend:/app
        - /app/node_modules
@@ -34,7 +34,7 @@ version: '3.8'
     mongodb:
      image: mongo:latest
      ports:
-        -"27017:27017"
+        - "27017:27017"
         volumes:
          - mongo-data:data/db
          volumes:
