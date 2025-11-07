@@ -32,9 +32,7 @@ services:
     environment:
       - MONGO_URI=mongodb://mongodb:27017/mydb
       - CLIENT_URL=http://localhost:5173
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
+  
 
   mongodb:
     image: mongo:latest
