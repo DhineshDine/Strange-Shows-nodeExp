@@ -100,7 +100,7 @@ app.use('/api/email', emailRoutes);
 app.use("/api/events", eventRoutes);
 
 
-app.use('/api/profile', require('./routes/profileRoutes'));
+app.use('/api/profile', profileRoutes);
 
 // ========================
 // ❗ 404 Handler (Fallback for unknown routes)
