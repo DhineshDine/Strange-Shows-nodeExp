@@ -98,7 +98,9 @@ app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/email', emailRoutes);
 
 app.use("/api/events", eventRoutes);
-app.use("/api/profile", profileRoutes); // ✅ Mount profile routes
+
+
+app.use('/api/profile', require('./routes/profileRoutes'));
 
 // ========================
 // ❗ 404 Handler (Fallback for unknown routes)
