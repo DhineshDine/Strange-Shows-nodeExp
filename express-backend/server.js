@@ -88,7 +88,6 @@ app.use('/api/coming-soon', comingSoonRoutes);
 // Based on your nowPlayingRoutes.js structure, this endpoint serves all CRUD functions
 app.use('/api/nowplaying', nowPlayingRoutes);
 
-app.use('/uploads', express.static('uploads')); // To serve avatar images
 
 app.use("/api/foods", foodRoutes);
 
