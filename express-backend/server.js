@@ -29,7 +29,7 @@ const restaurantRoutes = require('./routes/restaurantRoutes');
 
 const eventRoutes = require("./routes/eventRoutes")
 const emailRoutes = require('./routes/emailRoutes');
-const profileRoutes = require('./routes/profileRoutes'); // ✅ New line
+const profileRoutes = require('./routes/profile'); // ✅ New line
 
 // App Initialization
 const app = express();
