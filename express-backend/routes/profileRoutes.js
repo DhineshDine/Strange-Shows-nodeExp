@@ -27,7 +27,9 @@ const upload = multer({ storage });
  * GET /api/profile
  * Fetch full user profile
  */
-router.get('/', authMiddleware, async (req, res) => {
+const { verifyToken } = require('../middleware/authMiddleware');
+
+router.get('/', verifyToken, async (req, res) => {
   try {
     const user = await User.findById(req.userId)
       .populate('favoriteFilms')
