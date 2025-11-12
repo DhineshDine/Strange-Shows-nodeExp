@@ -9,6 +9,7 @@ const {
 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
+const { verifyToken } = require('../middleware/authMiddleware');
 
 router.get('/', getFoods);
 router.post('/', upload.single('image'), createFood);
