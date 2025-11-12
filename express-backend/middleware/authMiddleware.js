@@ -40,4 +40,4 @@ req.userId = user._id; // ✅ Add this line
   }
 };
 
-module.exports = { verifyToken };
+const authMiddleware = require('../middleware/authMiddleware');
