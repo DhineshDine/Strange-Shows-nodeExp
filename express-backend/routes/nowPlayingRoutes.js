@@ -94,7 +94,10 @@ const validateMovieFields = (body, fileRequired = true) => {
  * @desc    Get all now playing movies by location
  * @access  Public
  */
-router.get('/all', async (req, res) => {
+
+const { verifyToken } = require('../middleware/authMiddleware');
+
+router.get('/all',verifyToken, async (req, res) => {
     const { location } = req.query;
   
     try {
