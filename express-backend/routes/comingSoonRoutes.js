@@ -8,7 +8,7 @@ const {
 } = require('../controllers/comingSoonController');
 
 // GET all
-router.get('/', getComingSoonMovies);
+router.get('/', verifyToken, getComingSoonMovies);
 
 // POST create
 router.post('/', createComingSoonMovie);
