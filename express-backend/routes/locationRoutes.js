@@ -10,6 +10,8 @@ const {
 } = require('../controllers/locationController');
 
 // ✅ Routes
+const { verifyToken } = require('../middleware/authMiddleware');
+
 router.get('/', getAllLocations);
 router.get('/:id', getLocationById);
 router.post('/', createLocation);
