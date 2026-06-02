@@ -7,13 +7,13 @@ jobs:
   cron:
     runs-on: ubuntu-latest
     steps:
-      - name: Clone repo
-        uses: actions/checkout@v3
+    - name: Clone repo
+      uses: actions/checkout@v3
 
-      - name: Setup Python 
-        uses: actions/setup-python@v6.2.0
-        with:
-          python-version: '6.2.0'
+    - name: Setup Python 
+      uses: actions/setup-python@v6.2.0
+      with:
+        python-version: '6.2.0'
 
-      - name: Run Python 
-        run: python hello.py
+    - name: Run Python 
+      run: python hello.py
